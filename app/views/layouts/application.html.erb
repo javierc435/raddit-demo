@@ -11,10 +11,24 @@
 
   <body>
 
+    <%-# First alert message -%>
     <% flash.each do |name, msg| %>
       <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
     <% end %>
     <%-# Second alert message. Go to links/index.html.erb -%>
+
+    <% if user_signed_in? %>
+      <ul>
+        <li><%= link_to 'Crear nuevo enlace', new_link_path %></li>
+        <li><%= link_to 'Mi cuenta', edit_user_registration_path %></li>
+        <li><%= link_to 'Finalizar sesión', destroy_user_session_path, :method => :delete %></li>
+      </ul>
+    <% else %>
+      <ul>
+        <li><%= link_to '¡Regístrate!', new_user_registration_path %></li>
+        <li><%= link_to 'Iniciar sesión', new_user_session_path %></li>
+      </ul>
+    <% end %>
 
     <%= yield %>
   </body>
