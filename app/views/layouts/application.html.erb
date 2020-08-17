@@ -10,6 +10,12 @@
   </head>
 
   <body>
+
+    <% flash.each do |name, msg| %>
+      <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
+    <% end %>
+    <%-# Second alert message. Go to links/index.html.erb -%>
+
     <%= yield %>
   </body>
 </html>
